@@ -14,6 +14,6 @@ export class LocationService {
 
   getAtms(): Observable<GeoPoint[]> {
     // now returns an Observable of Config
-    return this.http.get<GeoPoint[]>(environment.url_base + "v1/location/atm");
+    return this.http.get<GeoPoint[]>(environment.url_base + 'v1/location/atm');
   }
 }

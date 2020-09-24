@@ -9,8 +9,8 @@ import { ExchangeRateService } from '../service/exchange-rate-service.service';
 })
 export class CurrencysectionComponent implements OnInit {
   loaded = false;
-  euros = "0";
-  pounds = "0";
+  euros = '0';
+  pounds = '0';
 
   constructor(public exchangeRateService: ExchangeRateService) { }
 
@@ -18,11 +18,11 @@ export class CurrencysectionComponent implements OnInit {
     this.getExchangeRate();
   }
 
-  getExchangeRate() {
+  getExchangeRate(): void {
     this.exchangeRateService.getExchangeRate().subscribe((data: ExchangeRate) => {
       this.euros = data.euroExchangeRate;
       this.pounds = data.poundExchangeRate;
       this.loaded = true;
-    })
+    });
   }
 }

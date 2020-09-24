@@ -10,10 +10,14 @@ import { LocationService } from '../service/location-service.service';
   styleUrls: ['./locationmap.component.css']
 })
 export class LocationmapComponent implements OnInit {
-  @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
+  @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
   locations: GeoPoint[];
-  markers = []
-  infoContent = ''
+  markers = [];
+  infoContent = '';
+  // Configuración de Google Maps
+  center = { lat: 52.1450093, lng: 5.2825826 };
+  zoom = 7;
+  display?: google.maps.LatLngLiteral;
 
   constructor(public locationService: LocationService) { }
 
@@ -22,17 +26,17 @@ export class LocationmapComponent implements OnInit {
 
   }
 
-  getExchangeRate() {
+  getExchangeRate(): void {
     this.locationService.getAtms().subscribe((data: GeoPoint[]) => {
       this.locations = data;
       this.locations.forEach(geoPoint => {
         this.addMarker(geoPoint);
       });
       console.log(this.locations);
-    })
+    });
   }
 
-  addMarker(geopoint: GeoPoint) {
+  addMarker(geopoint: GeoPoint): void {
     this.markers.push({
       position: {
         lat: parseFloat(geopoint.lat),
@@ -47,16 +51,11 @@ export class LocationmapComponent implements OnInit {
       options: {
         animation: google.maps.Animation.BOUNCE,
       },
-    })
+    });
   }
 
-  openInfo(marker: MapMarker, content) {
-    this.infoContent = content
-    this.info.open(marker)
+  openInfo(marker: MapMarker, content): void {
+    this.infoContent = content;
+    this.info.open(marker);
   }
-
-  // Configuración de Google Maps 
-  center = { lat: 52.1450093, lng: 5.2825826 };
-  zoom = 7;
-  display?: google.maps.LatLngLiteral;
 }

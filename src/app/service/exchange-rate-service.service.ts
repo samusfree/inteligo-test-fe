@@ -14,6 +14,6 @@ export class ExchangeRateService {
 
   getExchangeRate(): Observable<ExchangeRate> {
     // now returns an Observable of Config
-    return this.http.get<ExchangeRate>(environment.url_base + "v1/exchangerate");
+    return this.http.get<ExchangeRate>(environment.url_base + 'v1/exchangerate');
   }
 }
