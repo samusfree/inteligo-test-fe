@@ -1,0 +1,7 @@
+<h7 *ngIf="loaded else loading">
+    Currency Base is United State Dolars, exchange rate in Euros is {{euros}} and in Pounds is {{pounds}}
+</h7>
+
+<ng-template #loading>
+    <p>Loading...</p>
+</ng-template>
