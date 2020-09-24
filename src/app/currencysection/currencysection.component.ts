@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ExchangeRate } from '../model/exchange-rate';
+import { ExchangeRateService } from '../service/exchange-rate-service.service';
 
 @Component({
   selector: 'app-currencysection',
@@ -6,13 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./currencysection.component.css']
 })
 export class CurrencysectionComponent implements OnInit {
-  loaded = true;
+  loaded = false;
   euros = "0";
   pounds = "0";
 
-  constructor() { }
+  constructor(public exchangeRateService: ExchangeRateService) { }
 
   ngOnInit(): void {
+    this.getExchangeRate();
   }
 
+  getExchangeRate() {
+    this.exchangeRateService.getExchangeRate().subscribe((data: ExchangeRate) => {
+      this.euros = data.euroExchangeRate;
+      this.pounds = data.poundExchangeRate;
+      this.loaded = true;
+    })
+  }
 }

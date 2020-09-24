@@ -1,4 +1,4 @@
-export interface ExchangeRate {
+export class ExchangeRate {
     euroExchangeRate: string;
     poundExchangeRate: string;
 }

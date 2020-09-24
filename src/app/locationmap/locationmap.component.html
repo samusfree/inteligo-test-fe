@@ -1,8 +1,17 @@
-<p>locationmap works!</p>
-
 
 <google-map width="750px"
             height="450px"
             [center]="center"
             [zoom]="zoom">
+            <map-marker
+                #markerElem
+                *ngFor="let marker of markers"
+                [position]="marker.position"
+                [label]="marker.label"
+                [title]="marker.title"
+                [options]="marker.options"
+                (mapClick)="openInfo(markerElem, marker.info)"
+            >
+            <map-info-window>{{ infoContent }}</map-info-window>
+  </map-marker>
 </google-map>
