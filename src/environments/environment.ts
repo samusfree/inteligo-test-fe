@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url_base: 'http://ec2-3-87-121-242.compute-1.amazonaws.com/testinteligo/api/'
+  url_base: 'https://inteligo-test-be.herokuapp.com/testinteligo/api/'
 };
 
 /*
